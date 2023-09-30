@@ -65,19 +65,16 @@ class UserRepository {
   }
 
   async update(id, atributos) {
-    //Pegar todos 
+    //Pegar todos
     const records = await this.getAll();
 
     //buscar o elemento
     const toUpdate = records.find((record) => record.id === id);
 
-  
     // faz o update do objeto que eu quero
-    Object.assign(toUpdate, atributos)
+    Object.assign(toUpdate, atributos);
 
     await this.writeAll(records);
-
-
   }
 
   async writeAll(records) {
@@ -93,15 +90,15 @@ class UserRepository {
 
 const test = async () => {
   const repo = new UserRepository("users.json");
-/* 
+  /* 
   await repo.create({ nome: "joão", email: "joão@gmail.com" });
 
   const users = await repo.getAll();
 
   console.log(users); */
 
-  repo.update("277b2630" , {age:56, "nome":"Maria",nasc:"1996"});
-  repo.update("f1530e2a" , {age:37, "nome":"Guilherme",nasc:"1986"});
+  repo.update("277b2630", { age: 56, nome: "Maria", nasc: "1996" });
+  repo.update("f1530e2a", { age: 37, nome: "Guilherme", nasc: "1986" });
 };
 
 test();
